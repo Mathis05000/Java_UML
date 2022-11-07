@@ -1,4 +1,4 @@
-package code;
+package code.models;
 
 public class Agent {
 

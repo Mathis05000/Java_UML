@@ -1,4 +1,4 @@
-package code;
+package code.tools;
 
 public class DB {
 	

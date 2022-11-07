@@ -1,4 +1,4 @@
-package code;
+package code.models;
 import java.util.List;
 
 public class Session {
