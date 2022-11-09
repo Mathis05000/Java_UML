@@ -34,6 +34,5 @@ public class UDPSender {
 
 		this.dgramSocket.send(packet);
 		outStream.close();
-
 	}
 }

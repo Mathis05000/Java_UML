@@ -8,4 +8,8 @@ public class MessageConnectAck extends Message {
         super(data);
         this.valide = valide;
     }
+
+    public boolean isValide() {
+        return this.valide;
+    }
 }
