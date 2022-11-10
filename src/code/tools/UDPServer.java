@@ -20,6 +20,7 @@ public class UDPServer extends Thread {
     private Canal myCanal;
 
     public UDPServer(Canal myCanal) throws SocketException {
+        System.out.println("Server");
         this.myCanal = myCanal;
         this.dgramSocket = new DatagramSocket(this.myCanal.getPortUDP());
         this.buffer = new byte[this.sizeBuf];

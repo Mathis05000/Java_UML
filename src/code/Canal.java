@@ -11,6 +11,7 @@ import code.models.MessageConnect;
 import code.models.MessageConnectAck;
 import code.models.MessageDisconnect;
 import code.models.MessageSession;
+import code.models.Session;
 import code.tools.UDPSender;
 import code.tools.UDPServer;
 
@@ -23,15 +24,16 @@ public class Canal {
 	private int portTCP;
 	private Service service;
 
-	public Canal() throws UnknownHostException, SocketException {
+	public Canal(Service service) throws UnknownHostException, SocketException {
 
+		System.out.println("Canal");
 		this.broadcast = InetAddress.getByName("255.255.255.255");
-		this.portUDP = 1234;
+		this.portUDP = 1237;
 		this.portTCP = 15000;
 		this.UDPServ = new UDPServer(this);
 		this.UDPServ.start();
 		this.UDPClient = new UDPSender();
-		this.service = new Service();
+		this.service = service;
 	}
 
 	public int getPortUDP() {
@@ -56,6 +58,11 @@ public class Canal {
 		this.sendUDP(message, address);
 	}
 
+	public void sendSession(Session session, String addr) throws UnknownHostException, IOException {
+		MessageSession message = new MessageSession(session.getId(), session.getAddrMembres());
+		this.sendUDP(message, InetAddress.getByName(addr));
+	}
+
 	public void messageHandler(Message m) throws IOException {
 
 		if (m instanceof MessageConnect) {
@@ -71,7 +78,7 @@ public class Canal {
 		}
 
 		if (m instanceof MessageDisconnect) {
-			this.service.processMessageSession((MessageDisconnect) m);
+			this.service.processMessageDisconnect((MessageDisconnect) m);
 		}
 	}
 

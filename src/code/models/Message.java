@@ -1,9 +1,10 @@
 package code.models;
 
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.util.Date;
 
-public class Message {
+public class Message implements Serializable {
 
 	private String data;
 	private InetAddress src;

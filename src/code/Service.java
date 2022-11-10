@@ -21,8 +21,13 @@ public class Service {
     private Canal canal;
 
     public Service() throws UnknownHostException, SocketException {
+        System.out.println("service");
         this.config = Config.getConfig();
-        this.canal = new Canal();
+        this.canal = new Canal(this);
+    }
+
+    public void processSendConnect(String pseudo) throws IOException {
+        this.canal.sendConnect(pseudo);
     }
 
     public void processMessageConnect(MessageConnect message) throws IOException {
@@ -42,6 +47,14 @@ public class Service {
 
     }
 
+    public void processSendSession(Session session) throws IOException {
+        for (String addr : session.getAddrMembres()) {
+            if (!addr.equals(InetAddress.getLocalHost().getHostAddress())) {
+                this.canal.sendSession(session, addr);
+            }
+        }
+    }
+
     public void processMessageSession(MessageSession message) {
         this.config.addSession(Session.createByMessage(message, this.config));
     }
@@ -49,4 +62,6 @@ public class Service {
     public void processMessageDisconnect(MessageDisconnect message) {
         this.config.delAgent(this.config.getAgentByAddress(message.getSource().getHostAddress()));
     }
+
+
 }

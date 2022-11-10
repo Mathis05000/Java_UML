@@ -14,6 +14,7 @@ public class Config {
 	private List<Session> sessions = new ArrayList<Session>();
 
 	private Config() {
+		
 	}
 
 	// Gestion du singleton
@@ -63,7 +64,7 @@ public class Config {
 		}
 		return null;
 	}
-	
+
 	public void addSession(Session session) {
 		this.sessions.add(session);
 	}

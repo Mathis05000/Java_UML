@@ -9,6 +9,7 @@ import code.Config;
 public class Session {
 
 	private List<Agent> membres;
+	private List<MessageChat> messages;
 	private String id;
 
 	public Session(List<Agent> membres) {
@@ -18,6 +19,19 @@ public class Session {
 
 	public void delAgent(Agent agent) {
 		this.membres.remove(agent);
+	}
+
+	public List<String> getAddrMembres() {
+		List<String> liste = new ArrayList<String>();
+		for (Agent a : this.membres) {
+			liste.add(a.getAddress().getHostAddress());
+		}
+
+		return liste;
+	}
+
+	public void addMessage(MessageChat message) {
+		this.messages.add(message);
 	}
 
 	public String getId() {
@@ -30,6 +44,8 @@ public class Session {
 		for (String address : message.getAddrMembres()) {
 			agents.add(config.getAgentByAddress(address));
 		}
+
+		
 
 		return new Session(agents);
 	}
