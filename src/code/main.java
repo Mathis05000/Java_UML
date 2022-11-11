@@ -3,7 +3,12 @@ package code;
 import java.io.IOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import code.models.Agent;
+import code.models.Session;
 
 public class main {
 
@@ -20,6 +25,9 @@ public class main {
 		service.processSendConnect(pseudo);
 
 		
+		Session session = new Session(service.getConfig().getAgents());
+
+		service.processSendSession(session);
 
 	}
 

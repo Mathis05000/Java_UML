@@ -46,7 +46,7 @@ public class UDPServer extends Thread {
     public void run() {
         while (true) {
             try {
-                this.myCanal.messageHandler(UDPRecv());
+                this.myCanal.messageHandler(this.UDPRecv());
             } catch (IOException | ClassNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

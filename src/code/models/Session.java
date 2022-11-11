@@ -17,6 +17,10 @@ public class Session {
 		this.id = UUID.randomUUID().toString();
 	}
 
+	public List<Agent> getMembres() {
+		return this.membres;
+	}
+	
 	public void delAgent(Agent agent) {
 		this.membres.remove(agent);
 	}
@@ -45,7 +49,7 @@ public class Session {
 			agents.add(config.getAgentByAddress(address));
 		}
 
-		
+
 
 		return new Session(agents);
 	}

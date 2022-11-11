@@ -37,6 +37,10 @@ public class Config {
 		this.pseudo = newPseudo;
 	}
 
+	public List<Agent> getAgents() {
+		return this.AgentsActifs;
+	}
+
 	public void addAgent(Agent newAgent) {
 		if (!this.AgentsActifs.contains(newAgent)) {
 			this.AgentsActifs.add(newAgent);
@@ -90,4 +94,25 @@ public class Config {
 		}
 		return null;
 	}
+
+
+	////////////// methode de tests ///////////////
+
+	public void showAgents() {
+		for (Agent a : this.AgentsActifs) {
+			System.out.println(a.getPseudo() + " : " + a.getAddress().getHostAddress());
+		}
+	}
+
+	public void showSessions() {
+		for (Session s : this.sessions) {
+			System.out.println(s.getId() + " : ");
+
+			for (Agent a : s.getMembres()) {
+				System.out.println(a.getPseudo());
+			}
+		}
+	}
+
+	///////////////////////////////////////////////////
 }
