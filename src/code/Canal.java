@@ -36,8 +36,8 @@ public class Canal {
 		this.portUDP = 1500;
 		this.UDPServ = new UDPServer(this);
 		this.UDPServ.start();
-		this.TCPServ = new TCPServer(this);
-		this.TCPServ.start();
+		//this.TCPServ = new TCPServer(this);
+		//this.TCPServ.start();
 		this.UDPClient = new UDPSender();
 		this.service = service;
 	}
